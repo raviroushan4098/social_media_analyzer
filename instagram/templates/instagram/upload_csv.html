@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Post Analyzer - Instagram</title>
+</head>
+<body>
+    <h1>Analyze Instagram Posts from CSV</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Analyze</button>
+    </form>
+</body>
+</html>

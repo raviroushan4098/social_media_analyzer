@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram Analysis Results</title>
+</head>
+<body>
+    <h1>Instagram Analysis Results</h1>
+    {% if data %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Shortcode</th>
+                    <th>Username</th>
+                    <th>Caption</th>
+                    <th>Views</th>
+                    <th>Plays</th>
+                    <th>Likes</th>
+                    <th>Comments Count</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.shortcode }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.caption }}</td>
+                    <td>{{ item.views }}</td>
+                    <td>{{ item.plays }}</td>
+                    <td>{{ item.likes }}</td>
+                    <td>{{ item.comments_count }}</td>
+                    <td>
+                    {% if item.comments %}
+                        <ul>
+                        {% for comment in item.comments %}
+                            <li>
+                                <strong>{{ comment.owner_username }}:</strong> {{ comment.text }} (Likes: {{ comment.likes }})
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        No comments
+                    {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="{% url 'export_excel' %}">Export to Excel</a>
+    {% else %}
+        <p>No data to display.</p>
+    {% endif %}
+</body>
+</html>

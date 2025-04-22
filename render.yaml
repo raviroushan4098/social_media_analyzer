@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: social-media-analyzer
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn social_media_analyzer.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.3
+      - key: DEBUG
+        value: False
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"

@@ -44,6 +44,7 @@ python-dateutil
 python-decouple
 python-dotenv
 pytz
+psycopg2
 regex
 requests
 rsa
